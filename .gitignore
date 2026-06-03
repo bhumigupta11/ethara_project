@@ -19,3 +19,8 @@ frontend/.env.local
 # Misc
 .vscode/
 .idea/
+
+.venv/
+.venv312/
+*.db
+.dist/
