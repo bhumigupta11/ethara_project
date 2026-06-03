@@ -1,0 +1,14 @@
+project = "ethara-inventory"
+name = "Ethara Inventory Management"
+
+[[service]]
+name = "backend"
+path = "backend"
+build_command = "pip install -r requirements.txt"
+start_command = "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+
+[[service]]
+name = "frontend"
+path = "frontend"
+build_command = "npm install && npm run build"
+start_command = "npm run preview -- --host 0.0.0.0 --port $PORT"
