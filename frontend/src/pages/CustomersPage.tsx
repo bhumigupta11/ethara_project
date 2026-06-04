@@ -1,12 +1,12 @@
 import { useMemo, useState } from "react";
-import { HiSparkles, HiUsers } from "react-icons/hi";
+import { HiSparkles, HiUsers, HiPlus, HiMail } from "react-icons/hi";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { motion } from "framer-motion";
 import { api, customerEndpoints } from "../services/api";
 import Card from "../components/Card";
-import SearchInput from "../components/SearchInput";
 import { Customer, CustomerFormInput } from "../types";
 
-const inputClass = "rounded-2xl border border-white/10 bg-slate-950 px-4 py-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-600 focus:border-violet-500";
+const inputClass = "rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-blue-500 focus:ring-2 focus:ring-blue-100";
 
 const fetchCustomers = async (search: string) => {
   const response = await api.get(customerEndpoints.list, { params: { search } });
@@ -74,85 +74,204 @@ const CustomersPage = () => {
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-6 md:grid-cols-2">
-        <Card title="Customer relationships" subtitle="Build loyalty with every order">
-          <p className="text-slate-400">Create customer profiles, enforce unique emails, and search contacts by name or email.</p>
+      {/* Hero Section */}
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="grid gap-6 md:grid-cols-2"
+      >
+        <Card title="Customer Relationships" subtitle="Build loyalty with every order">
+          <p className="text-slate-600">Create customer profiles, enforce unique emails, and manage contacts with precision.</p>
         </Card>
-        <Card title="Customer score" subtitle="Engagement snapshot">
+        <Card title="Customer Metrics" subtitle="Engagement snapshot">
           <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-3xl bg-slate-950/70 p-4 text-center">
-              <p className="text-3xl font-semibold text-white">{totals.count}</p>
-              <p className="mt-2 text-sm text-slate-500">Profiles</p>
-            </div>
-            <div className="rounded-3xl bg-slate-950/70 p-4 text-center">
-              <p className="text-3xl font-semibold text-white">{totals.recent.length}</p>
-              <p className="mt-2 text-sm text-slate-500">Recent shown</p>
-            </div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="rounded-xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-4 text-center shadow-sm transition hover:shadow-md"
+            >
+              <p className="text-3xl font-bold text-slate-900">{totals.count}</p>
+              <p className="mt-2 text-sm font-medium text-slate-600">Profiles</p>
+            </motion.div>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="rounded-xl border border-purple-200 bg-gradient-to-br from-purple-50 to-pink-50 p-4 text-center shadow-sm transition hover:shadow-md"
+            >
+              <p className="text-3xl font-bold text-purple-700">{totals.recent.length}</p>
+              <p className="mt-2 text-sm font-medium text-purple-600">Recent</p>
+            </motion.div>
           </div>
         </Card>
-      </div>
+      </motion.div>
 
-      <div className="grid gap-6 lg:grid-cols-[1.5fr_0.8fr]">
-        <Card title="Search customers" subtitle="Locate contacts quickly">
-          <SearchInput value={search} onChange={setSearch} placeholder="Search by name or email" />
-        </Card>
-        <Card title="Assessment rules" subtitle="Customer validation">
-          <div className="rounded-3xl border border-white/10 bg-violet-500/10 p-4 text-slate-200">
-            <div className="flex items-center gap-2 text-sm text-slate-300">
-              <HiUsers className="h-5 w-5 text-violet-300" />
-              <span>Unique email enforcement</span>
-            </div>
-            <div className="mt-3 flex items-center gap-2 text-sm text-slate-300">
-              <HiSparkles className="h-5 w-5 text-violet-300" />
-              <span>Email format validation through the API</span>
-            </div>
+      {/* Search & Validation */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.1 }}
+        className="grid gap-6 lg:grid-cols-[1.5fr_0.8fr]"
+      >
+        <Card title="Search Customers" subtitle="Find contacts quickly">
+          <div className="flex gap-3">
+            <input
+              type="text"
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              placeholder="Search by name or email..."
+              className={`${inputClass} flex-1`}
+            />
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="rounded-xl bg-blue-600 p-2.5 text-white shadow-lg shadow-blue-500/30 transition hover:bg-blue-700"
+            >
+              <HiSparkles className="h-5 w-5" />
+            </motion.button>
           </div>
         </Card>
-      </div>
+        <Card title="Validation Rules" subtitle="Customer requirements">
+          <motion.div
+            whileHover={{ scale: 1.02 }}
+            className="rounded-xl border border-purple-100 bg-purple-50 p-4 transition hover:bg-purple-100"
+          >
+            <div className="space-y-2 text-sm">
+              <div className="flex items-center gap-2">
+                <HiMail className="h-5 w-5 text-purple-600" />
+                <span className="font-medium text-slate-900">Unique Emails</span>
+              </div>
+              <p className="text-xs text-slate-600 ml-7">No duplicate email enforcement</p>
+              <div className="flex items-center gap-2 mt-3">
+                <HiUsers className="h-5 w-5 text-purple-600" />
+                <span className="font-medium text-slate-900">Email Validation</span>
+              </div>
+              <p className="text-xs text-slate-600 ml-7">Format validation via API</p>
+            </div>
+          </motion.div>
+        </Card>
+      </motion.div>
 
-      <Card title="Add customer" subtitle="Create a profile for ordering">
-        <form className="grid gap-4 md:grid-cols-2" onSubmit={handleSubmit}>
-          <input className={inputClass} placeholder="Customer name" value={form.name} onChange={(event) => handleFormChange("name", event.target.value)} required />
-          <input className={inputClass} type="email" placeholder="Email" value={form.email} onChange={(event) => handleFormChange("email", event.target.value)} required />
-          <input className={inputClass} placeholder="Phone" value={form.phone} onChange={(event) => handleFormChange("phone", event.target.value)} />
-          <input className={inputClass} placeholder="Address" value={form.address} onChange={(event) => handleFormChange("address", event.target.value)} />
-          <div className="flex flex-col gap-3 md:col-span-2 md:flex-row md:items-center md:justify-between">
-            {message && <p className="text-sm text-slate-300">{message}</p>}
-            <button className="rounded-2xl bg-violet-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-violet-400 disabled:opacity-60" disabled={createMutation.isPending}>
-              {createMutation.isPending ? "Creating..." : "Create customer"}
-            </button>
-          </div>
-        </form>
-      </Card>
+      {/* Add Customer Form */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.2 }}
+      >
+        <Card title="Add New Customer" subtitle="Create a profile for ordering">
+          <form className="grid gap-4 md:grid-cols-2" onSubmit={handleSubmit}>
+            <div>
+              <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-700">Full Name</label>
+              <input
+                className={inputClass}
+                placeholder="Customer name"
+                value={form.name}
+                onChange={(event) => handleFormChange("name", event.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-700">Email Address</label>
+              <input
+                className={inputClass}
+                type="email"
+                placeholder="customer@example.com"
+                value={form.email}
+                onChange={(event) => handleFormChange("email", event.target.value)}
+                required
+              />
+            </div>
+            <div>
+              <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-700">Phone</label>
+              <input
+                className={inputClass}
+                placeholder="+1 (555) 000-0000"
+                value={form.phone}
+                onChange={(event) => handleFormChange("phone", event.target.value)}
+              />
+            </div>
+            <div>
+              <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-700">Address</label>
+              <input
+                className={inputClass}
+                placeholder="Street address"
+                value={form.address}
+                onChange={(event) => handleFormChange("address", event.target.value)}
+              />
+            </div>
+            <div className="flex flex-col gap-3 md:col-span-2 md:flex-row md:items-center md:justify-between">
+              {message && (
+                <motion.p
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="text-sm font-medium text-emerald-600"
+                >
+                  ✓ {message}
+                </motion.p>
+              )}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                type="submit"
+                className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2.5 text-sm font-semibold text-white shadow-lg shadow-purple-500/30 transition hover:from-purple-700 hover:to-pink-700 disabled:opacity-60"
+                disabled={createMutation.isPending}
+              >
+                <HiPlus className="h-5 w-5" />
+                {createMutation.isPending ? "Creating..." : "Create Customer"}
+              </motion.button>
+            </div>
+          </form>
+        </Card>
+      </motion.div>
 
-      <Card title="Customer Directory">
-        {isLoading ? (
-          <div className="rounded-3xl border border-white/10 bg-slate-950/60 p-8 text-center text-slate-400">Loading customers...</div>
-        ) : (
-          <div className="overflow-x-auto rounded-3xl border border-white/10 bg-slate-950/60">
-            <table className="min-w-full border-collapse text-left text-sm">
-              <thead className="bg-slate-900/90 text-slate-400">
-                <tr>
-                  <th className="px-4 py-4">Name</th>
-                  <th className="px-4 py-4">Email</th>
-                  <th className="px-4 py-4">Phone</th>
-                  <th className="px-4 py-4">Address</th>
-                </tr>
-              </thead>
-              <tbody>
-                {customers?.map((customer) => (
-                  <tr key={customer.id} className="border-t border-white/5 hover:bg-slate-900/80">
-                    <td className="px-4 py-4 text-slate-200">{customer.name}</td>
-                    <td className="px-4 py-4 text-slate-200">{customer.email}</td>
-                    <td className="px-4 py-4 text-slate-200">{customer.phone || "-"}</td>
-                    <td className="px-4 py-4 text-slate-200">{customer.address || "-"}</td>
+      {/* Customers Table */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.3 }}
+      >
+        <Card title="Customer Directory" subtitle="All registered customers">
+          {isLoading ? (
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-8 text-center text-slate-600">
+              <div className="mx-auto h-12 w-12 animate-spin rounded-full border-4 border-slate-200 border-t-purple-600"></div>
+              <p className="mt-4">Loading customers...</p>
+            </div>
+          ) : customers && customers.length > 0 ? (
+            <div className="overflow-x-auto rounded-xl border border-slate-200">
+              <table className="min-w-full divide-y divide-slate-200">
+                <thead className="bg-slate-50">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Name</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Email</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Phone</th>
+                    <th className="px-4 py-3 text-left text-xs font-semibold uppercase tracking-wider text-slate-600">Address</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        )}
-      </Card>
+                </thead>
+                <tbody className="divide-y divide-slate-100 bg-white">
+                  {customers?.map((customer, index) => (
+                    <motion.tr
+                      key={customer.id}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.02 }}
+                      whileHover={{ backgroundColor: "#F8FAFC" }}
+                      className="transition-colors"
+                    >
+                      <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-slate-900">{customer.name}</td>
+                      <td className="whitespace-nowrap px-4 py-4 text-sm text-slate-700">{customer.email}</td>
+                      <td className="whitespace-nowrap px-4 py-4 text-sm text-slate-700">{customer.phone || "-"}</td>
+                      <td className="px-4 py-4 text-sm text-slate-700 max-w-md truncate">{customer.address || "-"}</td>
+                    </motion.tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          ) : (
+            <div className="rounded-xl border border-slate-200 bg-slate-50 p-8 text-center text-slate-600">
+              <HiUsers className="mx-auto h-12 w-12 text-slate-400" />
+              <p className="mt-4 font-medium">No customers yet</p>
+              <p className="text-sm">Create your first customer profile to get started</p>
+            </div>
+          )}
+        </Card>
+      </motion.div>
     </div>
   );
 };

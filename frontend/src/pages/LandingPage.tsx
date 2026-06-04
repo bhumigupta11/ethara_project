@@ -59,7 +59,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(99,102,241,0.22),_transparent_25%),radial-gradient(circle_at_bottom_right,_rgba(236,72,153,0.16),_transparent_30%),bg-slate-950] text-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-white via-slate-50 to-blue-50">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <motion.div
           initial="hidden"
@@ -71,17 +71,17 @@ const LandingPage = () => {
             <div className="max-w-2xl space-y-4">
               <motion.span
                 whileHover={{ scale: 1.05 }}
-                className="inline-flex rounded-full bg-violet-500/15 px-4 py-2 text-xs uppercase tracking-[0.35em] text-violet-200 cursor-pointer"
+                className="inline-flex rounded-full bg-blue-100 px-4 py-2 text-xs uppercase tracking-[0.35em] text-blue-700 cursor-pointer font-semibold"
               >
                 Inventory built for modern teams
               </motion.span>
               <motion.h1
                 variants={itemVariants}
-                className="text-4xl font-semibold tracking-tight text-white sm:text-5xl"
+                className="text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl"
               >
                 Ethara delivers intelligent stock and order control at startup speed.
               </motion.h1>
-              <motion.p variants={itemVariants} className="max-w-xl text-slate-400">
+              <motion.p variants={itemVariants} className="max-w-xl text-slate-600">
                 Build stronger supply chains with real-time product visibility, customer workflows, and beautiful analytics powered by React, FastAPI, and Tailwind.
               </motion.p>
             </div>
@@ -89,7 +89,7 @@ const LandingPage = () => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   to="/register"
-                  className="inline-flex w-full items-center justify-center rounded-3xl bg-violet-500 px-6 py-3 text-sm font-semibold text-white shadow-[0_0_30px_rgba(139,92,246,0.4)] transition hover:bg-violet-400 hover:shadow-[0_0_40px_rgba(139,92,246,0.6)]"
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)] transition hover:shadow-[0_8px_25px_rgba(37,99,235,0.4)]"
                 >
                   Get started free
                 </Link>
@@ -97,7 +97,7 @@ const LandingPage = () => {
               <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   to="/login"
-                  className="inline-flex w-full items-center justify-center rounded-3xl border border-white/10 bg-slate-900/80 px-6 py-3 text-sm font-semibold text-slate-100 transition hover:border-violet-400 hover:bg-slate-900"
+                  className="inline-flex w-full items-center justify-center rounded-xl border-2 border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition hover:border-blue-400 hover:bg-blue-50"
                 >
                   Sign in instead
                 </Link>
@@ -110,47 +110,47 @@ const LandingPage = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
             whileHover={{ scale: 1.02 }}
-            className="group rounded-[2rem] border border-white/10 bg-slate-900/70 p-8 shadow-glow backdrop-blur-xl transition-all hover:shadow-[0_0_60px_rgba(139,92,246,0.3)]"
+            className="group rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_4px_20px_rgba(15,23,42,0.05)] transition-all hover:shadow-[0_12px_30px_rgba(37,99,235,0.12)]"
           >
-            <div className="mb-6 rounded-3xl border border-white/10 bg-slate-950/80 px-5 py-6">
-              <p className="text-sm uppercase tracking-[0.35em] text-slate-500">Live demo ready</p>
-              <h2 className="mt-4 text-2xl font-semibold text-white">Try manager and viewer access instantly.</h2>
-              <p className="mt-3 text-slate-400">Sample credentials are seeded automatically so you can explore product, customer and order workflows straight away.</p>
+            <div className="mb-6 rounded-xl border border-slate-200 bg-slate-50 px-5 py-6">
+              <p className="text-xs uppercase tracking-wider font-semibold text-blue-600">Live demo ready</p>
+              <h2 className="mt-4 text-2xl font-bold text-slate-900">Try manager and viewer access instantly.</h2>
+              <p className="mt-3 text-slate-600">Sample credentials are seeded automatically so you can explore product, customer and order workflows straight away.</p>
             </div>
             <div className="grid gap-4">
               <motion.div
                 whileHover={{ scale: 1.03, x: 5 }}
-                className="group/card cursor-pointer rounded-3xl bg-slate-950/75 p-5 transition-all hover:bg-slate-900/90 hover:shadow-[0_0_20px_rgba(139,92,246,0.2)]"
+                className="group/card cursor-pointer rounded-xl bg-slate-50 border border-slate-200 p-5 transition-all hover:bg-blue-50 hover:border-blue-200 hover:shadow-[0_4px_12px_rgba(37,99,235,0.1)]"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-violet-500 to-purple-600 text-xl font-bold text-white shadow-lg">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-blue-500 text-xl font-bold text-white shadow-lg">
                     M
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm uppercase tracking-[0.35em] text-slate-500">Manager Demo</p>
-                    <p className="mt-1 text-lg font-semibold text-white">manager@ethara.io</p>
+                    <p className="text-xs uppercase tracking-wider font-semibold text-blue-600">Manager Demo</p>
+                    <p className="mt-1 text-lg font-semibold text-slate-900">manager@ethara.io</p>
                   </div>
                 </div>
-                <div className="mt-3 rounded-xl bg-slate-950/80 px-3 py-2">
-                  <p className="text-sm text-slate-400">Password: <span className="font-mono text-slate-300">Manager123!</span></p>
+                <div className="mt-3 rounded-lg bg-white px-3 py-2 border border-slate-200">
+                  <p className="text-sm text-slate-600">Password: <span className="font-mono text-slate-800 font-semibold">Manager123!</span></p>
                 </div>
               </motion.div>
 
               <motion.div
                 whileHover={{ scale: 1.03, x: 5 }}
-                className="group/card cursor-pointer rounded-3xl bg-slate-950/75 p-5 transition-all hover:bg-slate-900/90 hover:shadow-[0_0_20px_rgba(139,92,246,0.2)]"
+                className="group/card cursor-pointer rounded-xl bg-slate-50 border border-slate-200 p-5 transition-all hover:bg-cyan-50 hover:border-cyan-200 hover:shadow-[0_4px_12px_rgba(6,182,212,0.1)]"
               >
                 <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 to-blue-600 text-xl font-bold text-white shadow-lg">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-cyan-500 to-cyan-400 text-xl font-bold text-white shadow-lg">
                     V
                   </div>
                   <div className="flex-1">
-                    <p className="text-sm uppercase tracking-[0.35em] text-slate-500">Viewer Demo</p>
-                    <p className="mt-1 text-lg font-semibold text-white">viewer@ethara.io</p>
+                    <p className="text-xs uppercase tracking-wider font-semibold text-cyan-600">Viewer Demo</p>
+                    <p className="mt-1 text-lg font-semibold text-slate-900">viewer@ethara.io</p>
                   </div>
                 </div>
-                <div className="mt-3 rounded-xl bg-slate-950/80 px-3 py-2">
-                  <p className="text-sm text-slate-400">Password: <span className="font-mono text-slate-300">Viewer123!</span></p>
+                <div className="mt-3 rounded-lg bg-white px-3 py-2 border border-slate-200">
+                  <p className="text-sm text-slate-600">Password: <span className="font-mono text-slate-800 font-semibold">Viewer123!</span></p>
                 </div>
               </motion.div>
             </div>
@@ -174,13 +174,13 @@ const LandingPage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 + index * 0.1 }}
               whileHover={{ scale: 1.05, y: -5 }}
-              className="group rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-glow transition-all hover:border-violet-400/50 hover:shadow-[0_0_40px_rgba(139,92,246,0.3)]"
+              className="group rounded-xl border border-slate-200 bg-white p-6 shadow-[0_4px_15px_rgba(15,23,42,0.05)] transition-all hover:border-blue-300 hover:shadow-[0_12px_25px_rgba(37,99,235,0.1)]"
             >
               <div className="relative">
-                <p className="text-sm uppercase tracking-[0.35em] text-violet-300">{stat.label}</p>
-                <h3 className="mt-4 text-3xl font-semibold text-white transition group-hover:text-violet-200">{stat.title}</h3>
-                <p className="mt-3 text-slate-400">{stat.desc}</p>
-                <div className="absolute -right-2 -top-2 h-20 w-20 rounded-full bg-violet-500/10 opacity-0 blur-xl transition-opacity group-hover:opacity-100" />
+                <p className="text-xs uppercase tracking-wider font-semibold text-blue-600">{stat.label}</p>
+                <h3 className="mt-4 text-3xl font-bold text-slate-900 transition group-hover:text-blue-700">{stat.title}</h3>
+                <p className="mt-3 text-slate-600">{stat.desc}</p>
+                <div className="absolute -right-2 -top-2 h-20 w-20 rounded-full bg-blue-200/20 opacity-0 blur-xl transition-opacity group-hover:opacity-100" />
               </div>
             </motion.div>
           ))}
@@ -197,7 +197,7 @@ const LandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.9 }}
-              className="text-sm uppercase tracking-[0.35em] text-violet-300"
+              className="text-xs uppercase tracking-wider font-semibold text-blue-600"
             >
               Everything you need
             </motion.p>
@@ -205,7 +205,7 @@ const LandingPage = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0 }}
-              className="mt-4 text-4xl font-semibold text-white"
+              className="mt-4 text-4xl font-bold text-slate-900"
             >
               Built for teams who want better inventory control.
             </motion.h2>
@@ -222,9 +222,9 @@ const LandingPage = () => {
                   whileHover={{ scale: 1.03, y: -8 }}
                 >
                   <Card title={feature.title} subtitle={feature.description}>
-                    <div className="flex items-start gap-3 text-slate-300">
-                      <div className="rounded-xl bg-violet-500/10 p-3">
-                        <Icon className="h-6 w-6 text-violet-300" />
+                    <div className="flex items-start gap-3 text-slate-600">
+                      <div className="rounded-lg bg-blue-100 p-3">
+                        <Icon className="h-6 w-6 text-blue-600" />
                       </div>
                       <span className="mt-3">{feature.description}</span>
                     </div>
