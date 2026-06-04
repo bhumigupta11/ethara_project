@@ -1,5 +1,10 @@
 # Ethara Inventory & Order Management System
 
+[![Frontend Live](https://img.shields.io/badge/Frontend-Live-success?style=for-the-badge&logo=railway)](https://carefree-possibility-production-c679.up.railway.app/)
+[![Backend API](https://img.shields.io/badge/Backend%20API-Live-blue?style=for-the-badge&logo=fastapi)](https://etharaproject-production-cd5b.up.railway.app/api)
+[![Backend Image](https://img.shields.io/badge/Docker%20Hub-ethara--backend-2496ED?style=for-the-badge&logo=docker)](https://hub.docker.com/r/bhumigupta2207/ethara-backend)
+[![Frontend Image](https://img.shields.io/badge/Docker%20Hub-ethara--frontend-2496ED?style=for-the-badge&logo=docker)](https://hub.docker.com/r/bhumigupta2207/ethara-frontend)
+
 Ethara is a simplified inventory and order management system built for the assessment brief. It includes a FastAPI backend, React frontend, PostgreSQL database, Dockerized services, and deployment-ready configuration.
 
 ## Implemented Features
@@ -49,14 +54,26 @@ Demo users are seeded automatically:
 
 ## Docker Images
 
-Build and push images after replacing `<dockerhub-username>`:
+Published Docker Hub images:
+
+- Backend: `https://hub.docker.com/r/bhumigupta2207/ethara-backend`
+- Frontend: `https://hub.docker.com/r/bhumigupta2207/ethara-frontend`
+
+Pull commands:
 
 ```bash
-docker build -t <dockerhub-username>/ethara-backend:latest -f backend/Dockerfile backend
-docker push <dockerhub-username>/ethara-backend:latest
+docker pull bhumigupta2207/ethara-backend:latest
+docker pull bhumigupta2207/ethara-frontend:latest
+```
 
-docker build --build-arg VITE_API_URL=https://<backend-host>/api -t <dockerhub-username>/ethara-frontend:latest -f frontend/Dockerfile frontend
-docker push <dockerhub-username>/ethara-frontend:latest
+Build and push (reference commands):
+
+```bash
+docker build -t bhumigupta2207/ethara-backend:latest -f backend/Dockerfile backend
+docker push bhumigupta2207/ethara-backend:latest
+
+docker build --build-arg VITE_API_URL=https://etharaproject-production-cd5b.up.railway.app/api -t bhumigupta2207/ethara-frontend:latest -f frontend/Dockerfile frontend
+docker push bhumigupta2207/ethara-frontend:latest
 ```
 
 ## Deployment Notes
@@ -77,12 +94,32 @@ Frontend on Vercel or Railway:
 
 ## Assessment Submission Links
 
-Replace these placeholders after publishing the repo, images, and hosted apps:
+- GitHub Repository Link (Frontend + Backend): `https://github.com/bhumigupta2207/ethara_project`
+- Backend Docker Hub Image Link: `https://hub.docker.com/r/bhumigupta2207/ethara-backend`
+- Frontend Docker Hub Image Link: `https://hub.docker.com/r/bhumigupta2207/ethara-frontend`
+- Frontend Hosted URL: `https://carefree-possibility-production-c679.up.railway.app/`
+- Backend API Hosted URL: `https://etharaproject-production-cd5b.up.railway.app/api`
 
-- GitHub Repository Link (Frontend + Backend): `https://github.com/<your-username>/ethara_project`
-- Backend Docker Hub Image Link: `https://hub.docker.com/r/<your-username>/ethara-backend`
-- Frontend Hosted URL: `https://<your-frontend-host>.vercel.app`
-- Backend API Hosted URL: `https://<your-backend-host>.railway.app`
+## Docker Tag Evidence
+
+The latest image tags are available on Docker Hub Tags pages:
+
+- Backend tags: `https://hub.docker.com/r/bhumigupta2207/ethara-backend/tags`
+- Frontend tags: `https://hub.docker.com/r/bhumigupta2207/ethara-frontend/tags`
+
+Latest digests pushed:
+
+- Backend `latest`: `sha256:a914e3faad316c9c57bd1a3a84db8a99e2c74fabed8b3b25925a288509796fb3`
+- Frontend `latest`: `sha256:218b4e3eaef5213755424a9f3761d9be15e479ff8064f29d8ef952c31c042d3e`
+
+## Submission Screenshots
+
+For final grading, include these screenshots in your report or this README:
+
+1. Docker Hub backend tags page showing `latest`
+2. Docker Hub frontend tags page showing `latest`
+3. Frontend hosted URL opened in browser
+4. Backend `/api/openapi.json` or `/docs` opened in browser
 
 ## API Summary
 
